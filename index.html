@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <title>Mini Gacha RPG</title>
+  <link rel="stylesheet" href="style/style.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">⚔️ Mini Gacha RPG</div>
+    <nav class="tabs">
+      <button class="tab active" data-view="gacha">Gacha</button>
+      <button class="tab" data-view="collection">Collezione</button>
+      <button class="tab" data-view="battle">Battaglia</button>
+    </nav>
+  </header>
+
+  <main class="container">
+    <!-- GACHA -->
+    <section id="view-gacha" class="panel">
+      <h2>🎰 Gacha — Pull singola</h2>
+      <p class="muted small">
+        Tassi (configurabili in <code>items.js</code>):
+        <span class="pill">3★ 20%</span>
+        <span class="pill">2★ 50%</span>
+        <span class="pill">1★ 30%</span>
+      </p>
+      <button id="pullBtn" class="btn">PULL</button>
+      <div id="gachaResult" class="gacha-result hidden"></div>
+
+      <div class="split">
+        <div>
+          <h3>Statistiche account</h3>
+          <div class="muted">Totale personaggi posseduti: <b id="ownedCount">0</b></div>
+        </div>
+        <div>
+          <button id="resetData" class="btn secondary">🔄 Reset dati locali</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- COLLECTION -->
+    <section id="view-collection" class="panel hidden">
+      <div class="split">
+        <h2>📚 Collezione</h2>
+        <div class="muted small">Suggerimento: clicca una card per i dettagli</div>
+      </div>
+      <div id="collectionGrid" class="grid"></div>
+      <div id="detailPane" class="detail hidden"></div>
+    </section>
+
+    <!-- BATTLE -->
+    <section id="view-battle" class="panel hidden">
+      <h2>⚔️ Battaglia 3v3</h2>
+
+      <div id="battle-setup">
+        <p class="muted">Seleziona <b>3</b> personaggi dalla tua collezione per la squadra <b>Giocatore</b>.</p>
+        <div id="setupGrid" class="grid"></div>
+        <button id="startBattle" class="btn" disabled>Avvia Battaglia</button>
+      </div>
+
+      <div id="battle-area" class="hidden">
+        <div class="split">
+          <span class="pill" id="turnIndicator">Turno: —</span>
+          <button id="restartBattle" class="btn secondary">↩️ Nuova Battaglia</button>
+        </div>
+
+        <div class="teams">
+          <div>
+            <h3>Squadra Giocatore</h3>
+            <div id="team-player" class="fighters-row"></div>
+          </div>
+          <div>
+            <h3>Squadra Nemico</h3>
+            <div id="team-enemy" class="fighters-row"></div>
+          </div>
+        </div>
+
+        <h4>Registro</h4>
+        <div id="battleLog" class="log"></div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Skill Menu -->
+  <div id="skillMenu" class="skill-menu hidden">
+    <div class="skill-menu-header">
+      <div id="skillHeader">Scegli una skill</div>
+      <button id="closeSkillMenu" class="btn ghost">Chiudi</button>
+    </div>
+    <div id="skillGrid" class="skill-grid"></div>
+  </div>
+
+  <!-- Ordine degli script: items -> combat -> gacha -->
+  <script src="js/items.js"></script>
+  <script src="js/combat.js"></script>
+  <script src="js/gacha.js"></script>
+</body>
+</html>
+
